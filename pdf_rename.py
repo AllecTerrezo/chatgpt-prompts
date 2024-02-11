@@ -39,6 +39,8 @@ def rename_pdf(dir): #rename all pdfs in the directory
   if file.endswith(".pdf"):
    path = os.path.join(dir, file)
    title = get_title(get_page(path)) + ".pdf"
+   if title.startswith("Sorry but"):
+     title = get_title(get_page(path)) + ".pdf"
    os.rename(path, os.path.join(dir, title))
 
 rename_pdf("Path to PDFs")
