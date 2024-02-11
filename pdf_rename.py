@@ -17,7 +17,7 @@ def get_page(pdf_file): #get the first 400 characters from the first page of a P
     return page_1_top
 
 def get_title(prompt): #Use chatgpt in order to get article title
-    clean_prompt =  re.sub("[:;,()\-]", "", prompt)
+    prompt =  re.sub("[:;,()\-]", "", prompt)
     completion = openai.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
@@ -27,7 +27,7 @@ def get_title(prompt): #Use chatgpt in order to get article title
                 {"role":"assistant", "content": "TOLERANCE ANALYSIS OF ANALOG VLSI CIRCUITS USING SENSITIVITY"},
                 {"role":"user", "content": "We describe the design of the analog portion of an electronics system to process signals from the photomultiplier tubes of the ATLAS Tile Calorimeter. The system has a 16-bit dynamic range and is capable of measuring energy depositions in a single calorimeter cell from to . In order to maintain the calorimeter calibration at the 1% level the system includes a charge injection circuit and a current integrator for use with a cesium source system and with the time-averaged currents produced by the LHC. Th"},
                 {"role":"assistant", "content": "Design of the front-end analog electronics for the ATLAS tile calorimeter"},
-                {"role":"user", "content": clean_prompt}     
+                {"role":"user", "content": prompt}     
                 ]
     )
     reply_content = completion.choices[0].message.content
